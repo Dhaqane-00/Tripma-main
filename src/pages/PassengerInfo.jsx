@@ -19,7 +19,6 @@ const PassengerInfo = () => {
   const handleCheckboxChange = (e) => {
     e.preventDefault();
     setSameAsPassenger(e.target.checked);
-
     if (e.target.checked) {
       setEmergencyFirstName(firstName);
       setEmergencyLastName(lastName);
