@@ -31,7 +31,8 @@ const Signin = ({signin, setSignin}) => {
         })
         .then((res) => {
           console.log(res.data)
-          toast.success("Sign in successful")
+          toast.success("Sign Up successful");
+          toast.success("Login now");
           navigate('/')
           setSignin(false)
         }).catch((err) => {

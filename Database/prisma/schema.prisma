@@ -25,3 +25,38 @@ model Trip {
   minor     Int
 }
 
+model Passenger {
+  id                  Int      @id @default(autoincrement())
+  firstName           String
+  lastName            String
+  middleName          String?
+  suffix              String?
+  dateOfBirth         DateTime?
+  email               String
+  phoneNumber         String
+  redressNumber       String?
+  knownTravellerNumber String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  emergencyContact    EmergencyContact?
+  bags                Bag[]
+}
+
+model EmergencyContact {
+  id           Int      @id @default(autoincrement())
+  firstName    String
+  lastName     String
+  email        String
+  phoneNumber  String
+  passengerId  Int @unique
+  passenger    Passenger @relation(fields: [passengerId], references: [id])
+}
+
+model Bag {
+  id           Int      @id @default(autoincrement())
+  numOfBags    Int
+  passengerId  Int
+  passenger    Passenger @relation(fields: [passengerId], references: [id])
+}
+
+

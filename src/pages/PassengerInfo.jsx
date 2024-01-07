@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { bag } from "../assets/images";
 import { useState } from "react";
 import { PriceDetails } from "../container";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const PassengerInfo = () => {
   const [sameAsPassenger, setSameAsPassenger] = useState(false);
@@ -15,6 +17,7 @@ const PassengerInfo = () => {
   const [emergencyLastName, setEmergencyLastName] = useState("");
   const [emergencyEmail, setEmergencyEmail] = useState("");
   const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState("");
+  
 
   const handleCheckboxChange = (e) => {
     e.preventDefault();
@@ -43,6 +46,33 @@ const PassengerInfo = () => {
         [name]: oparetion === "i" ? numOfBag[name] + 1 : numOfBag[name] - 1,
       };
     });
+  };
+
+  const handleSaveAndClose = async () => {
+    const passengerData = {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      emergencyContact: {
+        firstName: sameAsPassenger ? firstName : emergencyFirstName,
+        lastName: sameAsPassenger ? lastName : emergencyLastName,
+        email: sameAsPassenger ? email : emergencyEmail,
+        phoneNumber: sameAsPassenger ? phoneNumber : emergencyPhoneNumber,
+      },
+      bags: [{ numOfBags: numOfBag.numbag }],
+    };
+
+    try {
+      const response = await axios.post("http://localhost:3000/passenger/create", passengerData);
+      toast.success("Passenger saved successfully");
+      console.log("Passenger saved successfully:", response.data);
+      // Handle success, e.g., redirect or show a success message
+    } catch (error) {
+      toast.error("Error saving passenger");
+      console.error("Error saving passenger:", error.response ? error.response.data : error.message);
+      // Handle error, e.g., show an error message
+    }
   };
 
   return (
@@ -219,7 +249,8 @@ const PassengerInfo = () => {
             </div>
           </div>
           <div className="flex items-center gap-5">
-            <button className="py-2 px-4 border-[1px] border-[#605DEC] text-[#605DEC] rounded hover:bg-[#605DEC] hover:text-white transition-all duration-200">
+            <button onClick={handleSaveAndClose}
+            className="py-2 px-4 border-[1px] border-[#605DEC] text-[#605DEC] rounded hover:bg-[#605DEC] hover:text-white transition-all duration-200">
               Save & close
             </button>
             <Link to="/seat-selection">
