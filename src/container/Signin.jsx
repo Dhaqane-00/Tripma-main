@@ -40,6 +40,7 @@ const Sign = ({sign, setSign}) => {
       } else {
         toast.warning("Please fill the details")
       }
+      
     
   }
 
@@ -60,7 +61,7 @@ const Sign = ({sign, setSign}) => {
           phone number below to get started.
         </p>
       </header>
-      <form onSubmit={submitInputs}  className="flex flex-col gap-4">
+      <form onSubmit={submitInputs}  className="flex flex-col gap-4">   
         <input
           type="email"
           placeholder="Email or Phone Number"

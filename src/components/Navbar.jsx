@@ -5,6 +5,7 @@ import { BiMenuAltLeft } from 'react-icons/bi'
 import { useState } from "react";
 import { Signin,Sign } from "../container";
 
+
 const Navbar = () => {
   const location = useLocation();
   const[toggle, setToggle] = useState(false);
