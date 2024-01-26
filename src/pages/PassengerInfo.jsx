@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { bag } from "../assets/images";
 import { useState } from "react";
 import { PriceDetails } from "../container";
@@ -18,7 +18,6 @@ const PassengerInfo = () => {
   const [emergencyEmail, setEmergencyEmail] = useState("");
   const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState("");
   
-
   const handleCheckboxChange = (e) => {
     e.preventDefault();
     setSameAsPassenger(e.target.checked);
@@ -67,6 +66,7 @@ const PassengerInfo = () => {
       const response = await axios.post("http://localhost:3000/passenger/create", passengerData);
       toast.success("Passenger saved successfully");
       console.log("Passenger saved successfully:", response.data);
+      
       // Handle success, e.g., redirect or show a success message
     } catch (error) {
       toast.error("Error saving passenger");

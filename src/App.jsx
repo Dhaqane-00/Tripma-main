@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom"; 
+import TripUpdate from "./Admin/Pages/TripUpdate/TripUpdate";
 import { Footer, Navbar} from "./components";
 import {
+  Admin,
   Confirm,
   FlightExplore,
   Flights,
@@ -19,6 +21,10 @@ const App = () => {
       <div className="font-Nunito overflow-hidden max-w-[1440px] mx-auto">
         <Navbar />
         <Routes>
+          
+          <Route path="/Admin" element={<Admin />} />
+          <Route path='/trip/:id' element={<TripUpdate />}> </Route>
+
           <Route path="/" element={<Flights />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/packages" element={<Packages />} />

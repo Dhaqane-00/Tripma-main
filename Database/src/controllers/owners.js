@@ -5,7 +5,7 @@ const  SECRET_KEY = process.env.SECRET_KEY;
 
 //Owener Sigin Up
 exports.SignUp = async(req, res) => {
-    const { email, password } = req.body;
+    const { email, password ,role } = req.body;
     try{
 
         const existingOwner = await prisma.owners.findUnique({
@@ -23,7 +23,8 @@ exports.SignUp = async(req, res) => {
         const newOwner = await prisma.owners.create({
             data:{
                 email:email,
-                password:encrptedPassword
+                password:encrptedPassword,
+                role:role
             }
         })
         return res.status(200).json({
@@ -61,7 +62,8 @@ exports.SignIn = async(req, res) => {
         const token = jwt.sign(
             {
                 id:existingOwner.id,
-                email:existingOwner.email
+                email:existingOwner.email,
+                role:existingOwner.role,
             },
             SECRET_KEY,
             {expiresIn:"40m"}
@@ -70,7 +72,10 @@ exports.SignIn = async(req, res) => {
         return res.json({
             success:true,
             message:"owner logged in successfully",
-            data:existingOwner,
+            data:{
+                data:existingOwner,
+                role:existingOwner.role,
+            },
             token
         })
         

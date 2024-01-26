@@ -25,12 +25,20 @@ const Sign = ({sign, setSign}) => {
         // Assuming the server returns a token upon successful login
         const authToken = res.data.token;
 
+        
         // Save the token in localStorage for future requests
         localStorage.setItem('userToken', authToken);
+
+        const userRole = res.data.data.role
         
           console.log(res.data)
           toast.success("Sign in successful")
-          navigate('/')
+
+          if (userRole === 'Admin') {
+            navigate('/Admin')
+          }else {
+            navigate('/')
+          }
           setSign(false)
         }).catch((err) => {
           console.log(err)
@@ -40,8 +48,6 @@ const Sign = ({sign, setSign}) => {
       } else {
         toast.warning("Please fill the details")
       }
-      
-    
   }
 
   return (
