@@ -8,6 +8,7 @@ const app = express()
 const port = 3000;
 app.use(express.json());
 app.use(Cores())
+
 app.use("/owners",Router);
 app.use("/flight",Flight);
 app.use("/trip",Trip);

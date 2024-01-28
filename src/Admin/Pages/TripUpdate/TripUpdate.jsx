@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./TripUpdate.css";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const TripUpdate = () => {
   const navigate = useNavigate();
@@ -15,15 +16,15 @@ const TripUpdate = () => {
     minor: 0,
   });
 
-  const apiUrl = "http://localhost:3000";
+  const apiUrl = "http://localhost:3000/trip";
 
   useEffect(() => {
+    
     if (!id || id === "new") return;
-  
     const fetchTrip = async () => {
       try {
         const { data } = await axios.get(`${apiUrl}/getTrip/${id}`);
-        setTrip(data);
+        setTrip(data.data);
         console.log("Trip data:", data);
       } catch (error) {
         console.error("Error fetching trip:", error);
@@ -33,13 +34,16 @@ const TripUpdate = () => {
     fetchTrip();
   }, [id, apiUrl]);
   
-
+//Convert input to number Fields On adult and minor
   const handleChange = (e) => {
     setTrip({
       ...trip,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.name === "adult" || e.target.name === "minor"
+        ? Number(e.target.value)  // Convert input to number
+        : e.target.value,
     });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,16 +51,19 @@ const TripUpdate = () => {
     try {
       if (id === "new") {
         await axios.post(`${apiUrl}/search`, trip);
+        toast.success("Post successful")
       } else {
         await axios.put(`${apiUrl}/Updatesearch/${id}`, trip);
+        toast.success("Update successful")
       }
-
+      
       navigate("/Admin");
     } catch (error) {
       console.error("Error submitting trip:", error);
-      // Implement error handling, e.g., display an error message to the user
+      toast.error("Failed to submit trip:", error);
     }
   };
+
 
   return (
     <div className="post__wrapper">
@@ -71,7 +78,7 @@ const TripUpdate = () => {
           />
           <input
             type="text"
-            placeholder="Arrival..."
+            placeholder="Arrival"
             name="arrival"
             value={trip.arrival}
             onChange={handleChange}

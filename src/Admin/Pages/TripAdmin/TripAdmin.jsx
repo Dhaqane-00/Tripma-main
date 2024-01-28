@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./TripAdmin.css";
+import { toast } from "react-toastify";
 
 const AdminTrip = () => {
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ const AdminTrip = () => {
       const tripId = trip.id; // Make sure to use the correct property name for the id
       setTrips(trips.filter((t) => t.id !== tripId));
       await axios.delete(`http://localhost:3000/trip/DeleteTrip/${tripId}`);
+      toast.success("Delete successful")
+
     } catch (error) {
       console.error("Error deleting trip:", error);
     }
