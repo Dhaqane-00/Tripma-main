@@ -15,16 +15,20 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
+
+
+
+
+
 const App = () => {
   return (
     <>
       <div className="font-Nunito overflow-hidden max-w-[1440px] mx-auto">
         <Navbar />
         <Routes>
-          
           <Route path="/Admin" element={<Admin />} />
           <Route path='/trip/:id' element={<TripUpdate />}> </Route>
-
           <Route path="/" element={<Flights />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/packages" element={<Packages />} />

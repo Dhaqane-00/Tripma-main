@@ -61,4 +61,11 @@ model Bag {
   passenger    Passenger @relation(fields: [passengerId], references: [id])
 }
 
+model Payment {
+  id Int @id @default(autoincrement())
+  name String
+  number String
+  date String
+  ccv String
+}
 

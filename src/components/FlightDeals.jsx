@@ -30,8 +30,8 @@ const FlightDeals = () => {
             <img src={right} alt="arrow" className="w-5 h-5 md:w-6 md:h-6" />
           </div>
         </div>
-        <div className="flex gap-16 flex-wrap items-start ">
-          <FlightDealsCard
+        <div className="flex rounded gap-16 flex-wrap items-start ">
+          <FlightDealsCard 
             image={shangai}
             title="The Bund, "
             name="Shanghai"

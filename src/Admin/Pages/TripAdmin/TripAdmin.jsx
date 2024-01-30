@@ -39,13 +39,16 @@ const AdminTrip = () => {
 
   return (
     <div className="trips">
-      <div className="container">
+      <div className="container ">
+        <div className="flex justify-between w-2/4">
         <button
           onClick={() => navigate("/trip/new")}
           className="btn btn-primary mb-4"
         >
           New Trip
         </button>
+        <p className="text-lg">Trip Admin</p>
+        </div>
         <table className="table">
           <thead>
             <tr>

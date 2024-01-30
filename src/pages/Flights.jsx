@@ -1,4 +1,4 @@
-import { FlightDeals, Hero, Testimonials } from "../components"
+import { FlightDeals, Hero, Testimonials,ContactUs,Advertice } from "../components"
 import Places from "../components/Places"
 
 
@@ -12,7 +12,10 @@ const Flights = () => {
       <FlightDeals/>
     </div>
     <div className="mt-[60px]">
-     <Places/>
+     <Advertice/>
+    </div>
+    <div className="mt-[60px]">
+     <ContactUs/>
     </div>
     <div className="mt-[90px]">
     <Testimonials/>

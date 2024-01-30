@@ -17,5 +17,5 @@ export {
     SeatSelect,
     Payment,
     Confirm,
-    Admin
+    Admin,
 }

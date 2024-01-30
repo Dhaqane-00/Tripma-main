@@ -6,6 +6,8 @@ import Testimonials from "./Testimonials";
 import SelectDetails from "./SelectDetails";
 import FlightChoose from "./FlightChoose";
 import ConfirmShop from "./ConfirmShop";
+import ContactUs from "./ContactUs";
+import Advertice from "./Advertice";
 export {
     Navbar,
     Footer,
@@ -14,5 +16,7 @@ export {
     SelectDetails,
     Testimonials,
     FlightChoose,
-    ConfirmShop
+    ConfirmShop,
+    ContactUs,
+    Advertice
 }

@@ -48,6 +48,17 @@ const PassengerInfo = () => {
   };
 
   const handleSaveAndClose = async () => {
+      // Check for empty fields
+    if (!firstName || !lastName || !phoneNumber || !email) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    // Check for empty emergency contact fields if not same as passenger
+    if (!sameAsPassenger && (!emergencyFirstName || !emergencyLastName || !emergencyEmail || !emergencyPhoneNumber)) {
+      toast.error("Please fill in all emergency contact fields");
+      return;
+    }
     const passengerData = {
       firstName,
       lastName,
