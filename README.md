@@ -18,8 +18,8 @@ This is a Flight Booking UI template built using React and Tailwind CSS. It prov
 - 
 
 ## Contrubation Project 
--Team
--Abdilaahi Mowliid Dhaqane
--Ubax Huseein Abdi
--ismaciil Maxamed Abdi
+# Team
+- Abdilaahi Mowliid Dhaqane
+- Ubax Huseein Abdi
+- ismaciil Maxamed Abdi
 
