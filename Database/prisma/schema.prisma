@@ -14,7 +14,6 @@ model Owners {
   role     String   @default("User")
   created  DateTime @default(now())
   updated  DateTime @default(now())
-  
 }
 
 model Trip {
